@@ -7,7 +7,7 @@ pipeline{
 
     tools {
         terraform 'terraformwindows'
-        git 'gitwindows'
+        git '(GIT) git'
     }  
 
 
