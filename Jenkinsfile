@@ -1,4 +1,4 @@
-properties([parameters([booleanParam(defaultValue: false, description: 'tihellow worldlllll include init step', name: 'includeInit'), choice(choices: ['apply', 'destroy'], description: 'select apply or destroy which to include', name: 'applyORdestroy')])])
+properties([parameters([booleanParam(defaultValue: false, description: 'include r4r4r4rinit step', name: 'includeInit'), choice(choices: ['apply', 'destroy'], description: 'select apply or destroy which to include', name: 'applyORdestroy')])])
 
 pipeline{
     agent {
@@ -6,7 +6,7 @@ pipeline{
     }
 
     tools {
-        terraform 'terraformlinux'
+        terraform 'terraformwindows'
     }  
 
 
