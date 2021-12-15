@@ -14,7 +14,7 @@ pipeline{
     
     stages{
 
-        
+ 
         stage("Git Checkout"){
             steps{
                 git credentialsId: 'e4583a96-72a0-4803-8ccc-66d5f94d33b5', url: 'https://github.com/SharjeeLZeon/jenkinswindows'
@@ -84,11 +84,6 @@ pipeline{
 
     }
     post {
-        always {
-            script{
-                slack.always_case(message:"always called")
-            }
-        }
         success {
             script{
                 slack.slack_username("SharjeeL")
