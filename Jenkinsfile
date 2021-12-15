@@ -37,7 +37,9 @@ pipeline{
         }
         stage('Terraform Plan') {
             steps {
-                terraform(2)
+                script{
+                    terraform(2)
+                }
             }
         }
         stage('Proceed next stages') {
