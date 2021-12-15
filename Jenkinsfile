@@ -58,7 +58,7 @@ pipeline{
             steps{
                 script{
                 terraform(3)
-                slack.stage_message(message:"terraform resources applied")
+                slack.display_message(message:"terraform resources applied")
                 }
             }
             }
@@ -74,7 +74,7 @@ pipeline{
             steps{
                 script{
                     terraform(4)
-                    slack.stage_message(message:"terraform resources destroyed")
+                    slack.display_message(message:"terraform resources destroyed")
                 }
             }
         }
@@ -86,7 +86,7 @@ pipeline{
     post {
         always {
             script{
-                slack.always_case(message:"always called")
+                slack.display_message(message:"always called")
             }
         }
         success {
