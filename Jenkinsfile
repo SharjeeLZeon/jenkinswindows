@@ -1,3 +1,4 @@
+@Library("shared_library") _
 properties([parameters([booleanParam(defaultValue: false, description: 'include init step', name: 'includeInit'), choice(choices: ['apply', 'destroy'], description: 'select apply or destroy which to include', name: 'applyORdestroy')])])
 
 pipeline{
@@ -30,19 +31,13 @@ pipeline{
             }
             steps{
                 script{
-                    try{
-                        sh 'terraform init'
-                        slackSend message: 'init occur successfull'
-                    } catch(err){
-                        slackSend message: 'init dont occur successfull'
-                    }
+                    terraform(1)
                 }
-                
             }
         }
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan'
+                terraform(2)
             }
         }
         stage('Proceed next stages') {
@@ -59,7 +54,7 @@ pipeline{
                 }
             }
             steps{
-                sh 'terraform apply --auto-approve'
+                terraform(3)
                 slackSend message: 'aws resources created successfully'
                 
             }
@@ -74,7 +69,7 @@ pipeline{
                 }
             }
             steps{
-                sh 'terraform destroy --auto-approve'
+                terraform(4)
                 slackSend message: 'aws resources destroyed successfully'
                 
             }
