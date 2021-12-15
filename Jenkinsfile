@@ -84,16 +84,20 @@ pipeline{
 
     }
     post {
-
+        always {
+            script{
+                slack.always_case(message:"always called")
+            }
+        }
         success {
             script{
-                slack.username("SharjeeL")
+                slack.slack_username("SharjeeL")
                 slack.success_build()   
             }
         }
         failure {
             script{
-                slack.username("SharjeeL")
+                slack.slack_username("SharjeeL")
                 slack.build_failure() 
             }
         }
