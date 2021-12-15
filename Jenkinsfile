@@ -101,6 +101,11 @@ pipeline{
 
             }
             }
+        always {
+            script{
+                slackSend color: slack.success_color(), slack.success_build(env.JOB_NAME, env.BUILD_NUMBER, env.BUILD_URL)   
+            }
+        }
     
     
     }
