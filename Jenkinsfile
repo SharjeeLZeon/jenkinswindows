@@ -88,14 +88,15 @@ pipeline{
             script{
                 username = slack.slack_username()
                 slackSend color: slack.success_color(), message: "Username: ${username}"
-                slackSend color: '#AAFF00', message: "Build Successful - Job Name:${env.JOB_NAME}  Build Number:${env.BUILD_NUMBER}  Build URL:(<${env.BUILD_URL}|Open>)"
+
+                slackSend color: slack.success_color(), slack.success_build(env.JOB_NAME, env.BUILD_NUMBER, env.BUILD_URL)
             }
             }
         failure {
             script{
                 username = "sharjeel"
                 slackSend color: slack.failure_color(), message: "Username: ${username}"
-                slackSend color: '#FF0000', message: "Build failure occured - Job Name:${env.JOB_NAME}  Build Number:${env.BUILD_NUMBER}  Build URL:(<${env.BUILD_URL}|Open>)"
+                slackSend color: slack.failure_color(), message: "Build failure occured - Job Name:${env.JOB_NAME}  Build Number:${env.BUILD_NUMBER}  Build URL:(<${env.BUILD_URL}|Open>)"
 
 
             }
