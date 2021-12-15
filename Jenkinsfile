@@ -85,27 +85,16 @@ pipeline{
     }
     post {
 
-        always {
-            script{
-                slack.success_build()   
-            }
-        }
-
         success {
             script{
-                username = slack.slack_username()
-                slackSend color: slack.success_color(), message: "Username: ${username}"
-
-                slackSend color: slack.success_color(), slack.success_build(env.JOB_NAME, env.BUILD_NUMBER, env.BUILD_URL)
+                slack.username("SharjeeL")
+                slack.success_build()   
             }
             }
         failure {
             script{
-                username = "sharjeel"
-                slackSend color: slack.failure_color(), message: "Username: ${username}"
-                slackSend color: slack.failure_color(), message: "Build failure occured - Job Name:${env.JOB_NAME}  Build Number:${env.BUILD_NUMBER}  Build URL:(<${env.BUILD_URL}|Open>)"
-
-
+                slack.username("SharjeeL")
+                slack.build_failure() 
             }
             }
 
