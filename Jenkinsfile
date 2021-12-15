@@ -87,8 +87,7 @@ pipeline{
 
         always {
             script{
-                slackSend color: slack.success_color(), slack.success_build()   
-                slackSend message: "always"
+                slack.success_build()   
             }
         }
 
