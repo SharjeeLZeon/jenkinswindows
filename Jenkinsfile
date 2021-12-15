@@ -58,7 +58,7 @@ pipeline{
             steps{
                 script{
                 terraform(3)
-                slackSend message: 'aws resources created successfully'
+                slack.stage_message(message:"terraform resources applied")
                 }
             }
             }
@@ -74,7 +74,7 @@ pipeline{
             steps{
                 script{
                     terraform(4)
-                    slackSend message: 'aws resources destroyed successfully'
+                    slack.stage_message(message:"terraform resources destroyed")
                 }
             }
         }
