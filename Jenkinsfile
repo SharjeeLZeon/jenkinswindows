@@ -85,7 +85,9 @@ pipeline{
     }
     post {
         always {
-            slack.always_case(message:"always called")
+            script{
+                slack.always_case(message:"always called")
+            }
         }
         success {
             script{
